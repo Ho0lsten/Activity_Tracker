@@ -8,9 +8,7 @@ package Activity;
 import Hibernate.Activity;
 import Hibernate.Category;
 import Hibernate.HibernateUtil;
-import java.time.Duration;
 import java.time.LocalDateTime;
-import java.util.Date;
 import org.hibernate.Session;
 
 /**
@@ -19,15 +17,16 @@ import org.hibernate.Session;
  */
 public class activitySetter {
     
-     public static void createActivity(String activityName, String activityDescription,Integer fkCaegoryId,LocalDateTime activityEndTime,LocalDateTime activityStartTime) {
+     public static void createActivity(String activityName, String activityDescription,Integer fkCaegoryId,LocalDateTime activityStartTime,LocalDateTime activityEndTime) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
         Activity act = new Activity();     
         act.setActivityName(activityName);
         act.setActivityDescription(activityDescription);
+        act.setFkCategoryId(fkCaegoryId);
         act.setActivityStartTime(activityStartTime);
         act.setActivityEndTime(activityEndTime);
-        act.setFkCategoryId(fkCaegoryId);
+        session.save(act);
         session.getTransaction().commit();
 
     }

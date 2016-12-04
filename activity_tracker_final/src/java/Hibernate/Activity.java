@@ -51,7 +51,7 @@ public class Activity  implements java.io.Serializable {
         this.fkCategoryId = fkCategoryId; 
     }
 
-    public Integer getFkCategoryId (Integer fkCategoryId){
+    public Integer getFkCategoryId (){
         return this.fkCategoryId;
 }
     

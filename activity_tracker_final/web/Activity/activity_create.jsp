@@ -32,8 +32,9 @@
     <!-- Custom Style -->
     <link rel="stylesheet" href="../css/style.css">
 
-    <!-- Combodate.js -->
-    <link rel="javascript" href="../css/combodate.js">
+    <!--.js -->
+
+
 
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -45,13 +46,13 @@
 
     <script>
         $(function () {
-            jQuery("#eventStart").combodate({
+            jQuery("activity_start_time").combodate({
                 minYear: 2000,
                 maxYear: 2020
             });
         });
         $(function () {
-            jQuery("#eventEnd").combodate({
+            jQuery("activity_end_time").combodate({
                 minYear: 2000,
                 maxYear: 2020
             });
@@ -61,6 +62,7 @@
     </script>
 
 </head>
+
 
 
 
@@ -110,28 +112,32 @@
     <div class="panel panel-default">
         <div class="panel-heading">Startzeit eingeben</div>
         <div class="panel-body">
-            <input type="text" name="activity_start_time" id="activity_start_time" data-format="DD.MM.YYYY HH:mm" data-template="DD / MM / YYYY HH : mm" required="required"/>
+            <input type="datetime-local" id="activity_start_time" data-format="DD-MM-YYYY HH:mm" data-template="DD / MM / YYYY     HH : mm" value="21-12-2012 20:30">
+            <!--<input type="text" name="activity_start_time" id="activity_start_time" data-format="DD.MM.YYYY HH:mm" data-template="DD / MM / YYYY HH : mm" required="required"/> -->
         </div>
     </div>
 
     <div class="panel panel-default">
         <div class="panel-heading">Endzeit eingeben</div>
         <div class="panel-body">
-            <input type="text" name="activity_end_time" id="activity_end_time" data-format="DD.MM.YYYY HH:mm" data-template="DD / MM / YYYY HH : mm" required="required"/>
+            <input type="datetime-local" id="activity_end_time" data-format="DD-MM-YYYY HH:mm" data-template="DD / MM / YYYY     HH : mm" value="21-12-2012 20:30">
+            <!--<input type="text" name="activity_end_time" id="activity_end_time" data-format="DD.MM.YYYY HH:mm" data-template="DD / MM / YYYY HH : mm" required="required"/> -->
         </div>
     </div>
     <input type="submit" value="speichern" >
 
-    <%  String s1 = request.getParameter("Name");
+    <%       
+        String s1 = request.getParameter("Name");
         String s2 = request.getParameter("Beschreibung");
         String s3 = request.getParameter("Kategorie");
+
         String s4 = request.getParameter("activity_start_time");
+
         String s5 = request.getParameter("activity_end_time");
 
         if (s1 != null && s2 != null && s3 != null && s4 != null && s5 != null) {
-
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
             Integer fkCategoryId = Integer.parseInt(s3);
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
             LocalDateTime activity_start_time = LocalDateTime.parse(s4, formatter);
             LocalDateTime activity_end_time = LocalDateTime.parse(s5, formatter);
 
@@ -165,9 +171,10 @@
         <tr>
             <th width=”100px”>ID</th>
             <th width=”100px”>Name</th>
-            <th width=”100px”>Typ</th>
-            <th width=”100px”>Datum</th>
-            <th width=”100px”>Dauer</th>
+            <th width=”100px”>Beschreibung</th>
+            <th width=”100px”>Kategorie/typ</th>
+            <th width=”100px”>Startzeit</th>
+            <th width=”100px”>Endzeit</th>
         </tr>
         <tr>                
             <%
@@ -178,7 +185,8 @@
         <tr>
             <td><b><%=ActivityArr[i].getActivityId()%></b></td>
             <td><b><%=ActivityArr[i].getActivityName()%></b></td>
-            <td><b><%=ActivityArr[i].getActivityDescription()%></b></td>  
+            <td><b><%=ActivityArr[i].getActivityDescription()%></b></td>
+            <td><b><%=ActivityArr[i].getFkCategoryId()%></b></td>
             <td><b><%=ActivityArr[i].getActivityStartTime()%></b></td>
             <td><b><%=ActivityArr[i].getActivityEndTime()%></b></td>                  
 
@@ -205,4 +213,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="js/bootstrap.min.js"></script>
+<script src="js/jquery-3.1.1.min.js"></script> 
+<script src="js/moment.min.js"></script> 
+<script src="js/combodate.js"></script> 
+
 </html>
