@@ -176,23 +176,25 @@ public final class activity_005fcreate_jsp extends org.apache.jasper.runtime.Htt
       out.write("    <div class=\"panel panel-default\">\n");
       out.write("        <div class=\"panel-heading\">Endzeit eingeben</div>\n");
       out.write("        <div class=\"panel-body\">\n");
-      out.write("            <input type=\"datetime-local\" id=\"activity_end_time\" data-format=\"DD-MM-YYYY HH:mm\" data-template=\"DD / MM / YYYY     HH : mm\" value=\"21-12-2012 20:30\">\n");
+      out.write("            <input type=\"datetime-local\" >\n");
       out.write("            <!--<input type=\"text\" name=\"activity_end_time\" id=\"activity_end_time\" data-format=\"DD.MM.YYYY HH:mm\" data-template=\"DD / MM / YYYY HH : mm\" required=\"required\"/> -->\n");
       out.write("        </div>\n");
       out.write("    </div>\n");
       out.write("    <input type=\"submit\" value=\"speichern\" >\n");
       out.write("\n");
       out.write("    ");
-  String s1 = request.getParameter("Name");
+       
+        String s1 = request.getParameter("Name");
         String s2 = request.getParameter("Beschreibung");
         String s3 = request.getParameter("Kategorie");
+
         String s4 = request.getParameter("activity_start_time");
+
         String s5 = request.getParameter("activity_end_time");
 
         if (s1 != null && s2 != null && s3 != null && s4 != null && s5 != null) {
-
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
             Integer fkCategoryId = Integer.parseInt(s3);
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
             LocalDateTime activity_start_time = LocalDateTime.parse(s4, formatter);
             LocalDateTime activity_end_time = LocalDateTime.parse(s5, formatter);
 

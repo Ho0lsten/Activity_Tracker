@@ -8,7 +8,7 @@
             <column name="activity_id" />
             <generator class="identity" />
         </id>
-        <many-to-one name="category" class="Hibernate.Category" fetch="select">
+        <many-to-one name="fkCategoryId" class="Hibernate.Category" fetch="select">
             <column name="fk_category_id" />
         </many-to-one>
         <property name="activityName" type="string">

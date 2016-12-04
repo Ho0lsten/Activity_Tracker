@@ -44,23 +44,7 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    <script>
-        $(function () {
-            jQuery("activity_start_time").combodate({
-                minYear: 2000,
-                maxYear: 2020
-            });
-        });
-        $(function () {
-            jQuery("activity_end_time").combodate({
-                minYear: 2000,
-                maxYear: 2020
-            });
-        });
-
-
-    </script>
-
+    
 </head>
 
 
@@ -112,7 +96,7 @@
     <div class="panel panel-default">
         <div class="panel-heading">Startzeit eingeben</div>
         <div class="panel-body">
-            <input type="datetime-local" id="activity_start_time" data-format="DD-MM-YYYY HH:mm" data-template="DD / MM / YYYY     HH : mm" value="21-12-2012 20:30">
+            <input type="datetime-local" >
             <!--<input type="text" name="activity_start_time" id="activity_start_time" data-format="DD.MM.YYYY HH:mm" data-template="DD / MM / YYYY HH : mm" required="required"/> -->
         </div>
     </div>
@@ -120,7 +104,7 @@
     <div class="panel panel-default">
         <div class="panel-heading">Endzeit eingeben</div>
         <div class="panel-body">
-            <input type="datetime-local" id="activity_end_time" data-format="DD-MM-YYYY HH:mm" data-template="DD / MM / YYYY     HH : mm" value="21-12-2012 20:30">
+            <input type="datetime-local" >
             <!--<input type="text" name="activity_end_time" id="activity_end_time" data-format="DD.MM.YYYY HH:mm" data-template="DD / MM / YYYY HH : mm" required="required"/> -->
         </div>
     </div>
