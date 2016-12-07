@@ -5,6 +5,10 @@
 --%>
 
 
+<%@page import="java.text.DateFormat"%>
+<%@page import="java.sql.Date"%>
+<%@page import="java.sql.Timestamp"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.time.LocalDateTime"%>
 <%@page import="java.time.format.DateTimeFormatter"%>
 <%@page import="Category.categoryGetter"%>
@@ -13,6 +17,7 @@
 <%@page import="Hibernate.Activity"%>
 <%@page import="Hibernate.HibernateUtil"%>
 <%@page import="Activity.activitySetter"%>
+<%@page import="parser.timestamp"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
@@ -110,14 +115,14 @@
     <div class="panel panel-default">
         <div class="panel-heading">Startzeit eingeben</div>
         <div class="panel-body">
-            <input type="text" name="activity_start_time" id="activity_start_time" data-format="DD.MM.YYYY HH:mm" data-template="DD / MM / YYYY HH : mm" required="required"/>
+            <input type="datetime-local" name="activity_start_time" id="activity_start_time" data-format="DD.MM.YYYY HH:mm" data-template="DD / MM / YYYY HH : mm" required="required"/>
         </div>
     </div>
 
     <div class="panel panel-default">
         <div class="panel-heading">Endzeit eingeben</div>
         <div class="panel-body">
-            <input type="text" name="activity_end_time" id="activity_end_time" data-format="DD.MM.YYYY HH:mm" data-template="DD / MM / YYYY HH : mm" required="required"/>
+            <input type="datetime-local" name="activity_end_time" id="activity_end_time" data-format="DD.MM.YYYY HH:mm" data-template="DD / MM / YYYY HH : mm" required="required"/>
         </div>
     </div>
     <input type="submit" value="speichern" >
@@ -130,20 +135,27 @@
 
         if (s1 != null && s2 != null && s3 != null && s4 != null && s5 != null) {
 
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-            //Category fkCategoryId = Category.parse(s3);
-            LocalDateTime activity_start_time = LocalDateTime.parse(s4, formatter);
-            LocalDateTime activity_end_time = LocalDateTime.parse(s5, formatter);
+            //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+            //Category fkCategoryId = Category.(s3);
+            //java.sql.Timestamp activity_start_time = Timestamp.parse(s4, formatter);
+            //LocalDateTime activity_end_time = LocalDateTime.parse(s5, formatter);
+            //Integer fkCategoryId = Integer.parseInt(s3);
+            
+         Timestamp activity_start_time =timestamp.convertStringToTimestamp(s4);
+         Timestamp activity_end_time =timestamp.convertStringToTimestamp(s5);
+            
 
-            //activitySetter.createActivity(s1, s2, fkCategoryId, activity_start_time, activity_end_time);
+           
+
+            activitySetter.createActivity(s1, s2, activity_start_time, activity_end_time);
             //out.println("Kategorie" + s2 + "angelegt");
         }
     %> 
 </form>
 
 <script type="text/javascript">
-<!--
-    function toggle_visibility(id) {
+    <        !--
+        function toggle_visibility(id) {
         var e = document.getElementById(id);
         if (e.style.display == 'none')
             e.style.display = 'block';
@@ -170,33 +182,33 @@
             <th width=”100px”>Dauer</th>
         </tr>
         <tr>                
-            <%
-                Activity[] ActivityArr = activityGetter.getActivities();
-                for (int i = 0; i < ActivityArr.length; i++) {
+    <%
+        Activity[] ActivityArr = activityGetter.getActivities();
+        for (int i = 0; i < ActivityArr.length; i++) {
 
-            %> 
-        <tr>
-            <td><b><%=ActivityArr[i].getActivityId()%></b></td>
-            <td><b><%=ActivityArr[i].getActivityName()%></b></td>
-            <td><b><%=ActivityArr[i].getActivityDescription()%></b></td>  
-            <td><b><%=ActivityArr[i].getActivityStartTime()%></b></td>
-            <td><b><%=ActivityArr[i].getActivityEndTime()%></b></td>                  
-
-
-            <%
-                }
-                HibernateUtil.getSessionFactory().getCurrentSession().disconnect();
-
-            %>               
-        </tr>
-    </table>
+    %> 
+    <tr>
+        <td><b><%=ActivityArr[i].getActivityId()%></b></td>
+        <td><b><%=ActivityArr[i].getActivityName()%></b></td>
+        <td><b><%=ActivityArr[i].getActivityDescription()%></b></td>  
+        <td><b><%=ActivityArr[i].getActivityStartTime()%></b></td>
+        <td><b><%=ActivityArr[i].getActivityEndTime()%></b></td>                  
 
 
-    <hr>
+        <%
+            }
+            HibernateUtil.getSessionFactory().getCurrentSession().disconnect();
 
-    <footer>
-        <p>&copy; 2016 MoveoMed, GmbH</p>
-    </footer>
+        %>               
+    </tr>
+</table>
+
+
+<hr>
+
+<footer>
+    <p>&copy; 2016 MoveoMed, GmbH</p>
+</footer>
 </div> <!-- /container -->  
 
 
