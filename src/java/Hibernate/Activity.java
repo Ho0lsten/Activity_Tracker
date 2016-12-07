@@ -2,6 +2,7 @@ package Hibernate;
 // Generated 06.12.2016 22:32:35 by Hibernate Tools 4.3.1
 
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 /**
@@ -14,13 +15,13 @@ public class Activity  implements java.io.Serializable {
      private Category category;
      private String activityName;
      private String activityDescription;
-     private Date activityStartTime;
-     private Date activityEndTime;
+     private Timestamp activityStartTime;
+     private Timestamp activityEndTime;
 
     public Activity() {
     }
 
-    public Activity(Category category, String activityName, String activityDescription, Date activityStartTime, Date activityEndTime) {
+    public Activity(Category category, String activityName, String activityDescription, Timestamp activityStartTime, Timestamp activityEndTime) {
        this.category = category;
        this.activityName = activityName;
        this.activityDescription = activityDescription;
@@ -60,14 +61,14 @@ public class Activity  implements java.io.Serializable {
         return this.activityStartTime;
     }
     
-    public void setActivityStartTime(Date activityStartTime) {
+    public void setActivityStartTime(Timestamp activityStartTime) {
         this.activityStartTime = activityStartTime;
     }
     public Date getActivityEndTime() {
         return this.activityEndTime;
     }
     
-    public void setActivityEndTime(Date activityEndTime) {
+    public void setActivityEndTime(Timestamp activityEndTime) {
         this.activityEndTime = activityEndTime;
     }
 

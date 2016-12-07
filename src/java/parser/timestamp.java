@@ -21,7 +21,7 @@ public class timestamp {
   public static Timestamp convertStringToTimestamp(String str_date) {
     try {
       DateFormat formatter;
-      formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+      formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
       Date date = (Date) formatter.parse(str_date);
       java.sql.Timestamp timeStampDate = new Timestamp(date.getTime());
 

@@ -4,6 +4,8 @@
     Author     : hools_000
 --%>
 
+<%@page import="Category.categoryDelete"%>
+<%@page import="Category.categorySetter"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
@@ -41,6 +43,24 @@
     </div>
 </div><!-- /End Jumbotron -->
 
+<form action="category_delete.jsp">
+    <div class="panel panel-default">
+        <div class="panel-heading">ID eingeben</div>
+        <div class="panel-body">
+            <input type="text" name="ID">
+            <input type="submit" value="OK">
+            </div>
+    </div>
+            <% String s1 = request.getParameter("ID");
+                try {
+                    if (s1 != null) {
+                        categoryDelete.categoryDeleteById(Integer.parseInt(s1));
+                    }
+                } catch (Exception e) {
+                    out.println("Bitte gültige ID eingeben!");
+                }
+            %>
+        </form>
 
 <hr>
 

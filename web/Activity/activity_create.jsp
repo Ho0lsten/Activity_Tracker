@@ -57,10 +57,10 @@
         });
         $(function () {
             jQuery("#eventEnd").combodate({
-                minYear: 2000,
-                maxYear: 2020
-            });
-        });
+                        minYear: 2000,
+                        maxYear: 2020
+                    });
+                });
 
 
     </script>
@@ -132,21 +132,26 @@
         String s3 = request.getParameter("Kategorie");
         String s4 = request.getParameter("activity_start_time");
         String s5 = request.getParameter("activity_end_time");
+        
+        if (s1 != null && s2 != null && s4 != null && s5 != null) {
 
-        if (s1 != null && s2 != null && s3 != null && s4 != null && s5 != null) {
-
-            //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
             //Category fkCategoryId = Category.(s3);
             //java.sql.Timestamp activity_start_time = Timestamp.parse(s4, formatter);
-            //LocalDateTime activity_end_time = LocalDateTime.parse(s5, formatter);
+            LocalDateTime ast = LocalDateTime.parse(s4, formatter);
+            LocalDateTime aet = LocalDateTime.parse(s5, formatter);
             //Integer fkCategoryId = Integer.parseInt(s3);
-            
-         Timestamp activity_start_time =timestamp.convertStringToTimestamp(s4);
-         Timestamp activity_end_time =timestamp.convertStringToTimestamp(s5);
-            
 
-           
-
+            Timestamp activity_start_time =Timestamp.valueOf(ast);
+            //out.println("ast " + activity_start_time);
+            Timestamp activity_end_time =Timestamp.valueOf(aet);
+            //out.println("aet " + activity_end_time);
+            //Timestamp activity_start_time =timestamp.convertStringToTimestamp(s4);
+            //out.println("ast " + activity_start_time);
+            //Timestamp activity_start_time =Timestamp.valueOf(s4);
+            //out.println("ast " + activity_start_time);
+            //Timestamp activity_end_time =timestamp.convertStringToTimestamp(s5);
+            //out.println("aet " + activity_end_time);
             activitySetter.createActivity(s1, s2, activity_start_time, activity_end_time);
             //out.println("Kategorie" + s2 + "angelegt");
         }
@@ -154,14 +159,14 @@
 </form>
 
 <script type="text/javascript">
-    <        !--
-        function toggle_visibility(id) {
-        var e = document.getElementById(id);
-        if (e.style.display == 'none')
-            e.style.display = 'block';
-        else
-            e.style.display = 'none';
-    }
+<        !--
+function toggle_visibility(id) {
+                    var e = document.getElementById(id);
+            if (e.style.display == 'none')
+                e.style.display = 'block';
+            else
+                e.style.display = 'none';
+}
 //-->
 </script>     
 <br></br>
@@ -178,8 +183,8 @@
             <th width=”100px”>ID</th>
             <th width=”100px”>Name</th>
             <th width=”100px”>Typ</th>
-            <th width=”100px”>Datum</th>
-            <th width=”100px”>Dauer</th>
+            <th width=”100px”>Startzeit</th>
+            <th width=”100px”>Endzeit</th>
         </tr>
         <tr>                
     <%

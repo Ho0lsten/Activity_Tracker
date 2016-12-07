@@ -17,7 +17,7 @@ import org.hibernate.Session;
  */
 public class activitySetter {
     
-     public static void createActivity(String activityName, String activityDescription,Timestamp activityEndTime,Timestamp activityStartTime) {
+     public static void createActivity(String activityName, String activityDescription,Timestamp activityStartTime, Timestamp activityEndTime) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
         Activity act = new Activity();     
